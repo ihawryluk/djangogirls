@@ -7,8 +7,11 @@
                  {{ post.published_date }}
             </div>
             <h1><a href="{% url 'blog.views.post_detail' pk=post.pk %}">
-                    {{ post.title }}</a></h1>
+                    {{ post.title }}</a>
+                    <small> {{ post.rating }} </small> </h1>
             <p>{{ post.text|linebreaks }}</p>
+            <a href="{% url 'like' pk=post.pk %}" class="btn btn-primary">+</a>
+            <a href="{% url 'dislike' pk=post.pk %}" class="btn btn-primary">-</a>
         </div>
     {% endfor %}
 {% endblock content %}

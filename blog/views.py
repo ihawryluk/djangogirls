@@ -53,3 +53,15 @@ def post_remove(request, pk):
 	post = get_object_or_404(Post, pk=pk)
 	post.delete()
 	return redirect('blog.views.post_list')
+
+def like_post(request, pk):
+	post = Post.objects.get(pk=pk)
+	post.rating += 1
+	post.save()
+	return redirect('blog.views.post_list')
+
+def dislike_post(request, pk):
+	post = Post.objects.get(pk=pk)
+	post.rating -= 1
+	post.save()
+	return redirect('blog.views.post_list')
